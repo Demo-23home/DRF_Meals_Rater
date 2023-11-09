@@ -11,7 +11,7 @@ class MealAdmin(admin.ModelAdmin):
 
 
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ['id', 'meal', 'user', 'rate']
+    list_display = ['id', 'meal', 'user', 'stars']
     list_filter = ['meal', 'user']
 
 # Register your models here.
