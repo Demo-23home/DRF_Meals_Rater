@@ -12,11 +12,29 @@ class Meal(models.Model):
     def __str__(self):
         return self.title
     
+    def no_of_ratings(self):
+        ratings = Rating.objects.filter(meal=self)
+        return len(ratings)
+
+    def rate_avg(self):
+        sum = 0
+        ratings = Rating.objects.filter(meal=self)
+        for x in ratings:
+            sum += x.stars
+        if len(ratings)>0:
+            return sum/len(ratings)
+        return 0
+        
+        
+         
+
+
+    
 
 class Rating(models.Model):
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rate = models.PositiveBigIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    stars = models.PositiveBigIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     
     def __str__(self):
         return str(self.meal)
