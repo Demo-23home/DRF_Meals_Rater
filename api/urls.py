@@ -6,6 +6,7 @@ from .views import *
 router = routers.DefaultRouter()
 router.register('meals', MealViewset)
 router.register('rate',RatingViewset)
+router.register('users',UserViewset)
 
 
 
